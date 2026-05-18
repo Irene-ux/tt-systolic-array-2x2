@@ -27,7 +27,7 @@ assign uio_out = {7'b0,valid1};
 assign uio_oe = 8'b00000001;
 systolic_array systolic_array_inst(
   .clk(clk),
-  .rst_n(rst_n),
+  .reset_n(rst_n),
   .start(start),
   .a_row0(a_row0),
   .a_row1(a_row1),

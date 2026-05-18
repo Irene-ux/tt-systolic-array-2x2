@@ -22,8 +22,8 @@ if (!reset_n) begin
         acc_next = 0;
         if (weight_in[0]) acc_next = acc_next + a_in;
         if (weight_in[1]) acc_next = acc_next + (a_in << 1);
-        if (weight_in[2])acc_next  = acc_next + (a_in << 2);
-        if (weight_in[3])acc_next  = acc_next - (a_in << 3);
+        if (weight_in[2]) acc_next  = acc_next + (a_in << 2);
+        if (weight_in[3]) acc_next  = acc_next - (a_in << 3);
 
         if(en)
         acc <= acc + acc_next;

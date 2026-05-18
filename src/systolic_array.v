@@ -12,17 +12,20 @@ module systolic_array(
 );
 wire en;
 wire signed[7:0]  accf_00, accf_01, accf_10, accf_11;
+wire clear;
 fsm fsm_inst(
     .clk(clk),
     .reset_n(reset_n),
     .start(start),
     .en(en),
+    .clear(clear),
     .valid(valid)
 );
 array_module array_inst(
     .clk(clk),
     .reset_n(reset_n),
     .en(en),
+    .clear(clear),
     .a_row0(a_row0),
     .a_row1(a_row1),
     .weight_col0(weight_col0),
