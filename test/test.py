@@ -50,7 +50,7 @@ async def test_project(dut):
     await RisingEdge(dut.clk)
 
     # wait for valid
-    while dut.uio_out.value & 0x1 == 0:
+    while (dut.uio_out.value & 0x1) == 0:
         await RisingEdge(dut.clk)
 
     # read 4 outputs — identity x identity = identity
