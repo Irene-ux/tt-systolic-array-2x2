@@ -35,11 +35,11 @@ endif
 COMPILE_ARGS 		+= -I$(SRC_DIR)
 
 # Include the testbench sources:
-#VERILOG_SOURCES += $(PWD)/PE_module.v
-TOPLEVEL ?= pe
+#VERILOG_SOURCES += $(PWD)/PE_module.v array_module.v FSM_module.v output_serializer.v systolic_array.v tt_um_systolic_array.v
+TOPLEVEL ?= tb
 
 # List test modules to run, separated by commas and without the .py suffix:
-MODULE ?= test_pe
+MODULE ?= test
 
 # include cocotb's make rules to take care of the simulator setup
 include $(shell cocotb-config --makefiles)/Makefile.sim
