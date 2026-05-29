@@ -8,13 +8,13 @@ project:
   clock_hz:     50000000
   tiles: "1x1"
   top_module:  "tt_um_systolic_array"
-  source_files:
-    - "tt_um_systolic_array.v"
-    - "systolic_array.v"
+source_files:
     - "PE_module.v"
     - "array_module.v"
     - "FSM_module.v"
     - "output_serializer.v"
+    - "systolic_array.v"
+    - "tt_um_systolic_array.v"
 pinout:
   ui[0]: "start"
   ui[1]: "load"
