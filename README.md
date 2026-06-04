@@ -84,8 +84,8 @@ sel=11  ui_in[7:4]=w[0][1]  uio_in[7:4]=w[1][1]
 | Antenna violations | 0 |
 | Magic DRC errors | 0 |
 | LVS errors | 0 |
-| Setup slack (nom tt_025C_3v30) | +6.58 ns ✓ |
-| Hold slack (nom tt_025C_3v30) | +1.00 ns ✓ |
+| Setup slack (nom tt_025C_3v30) | +6.58 ns |
+| Hold slack (nom tt_025C_3v30) | +1.00 ns |
 | Total power | 3.45 mW |
 | IR drop worst (VPWR) | 79.8 µV |
 
