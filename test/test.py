@@ -87,25 +87,30 @@ async def test_identity(dut):
 
 @cocotb.test()
 async def test_general(dut):
-    """A=[[1,2],[3,4]] x W=[[5,6],[7,8]] = [[19,22],[43,50]]"""
+    """A=[[1,2],[3,4]] x W=[[1,2],[3,4]] = [[7,10],[15,22]]
+    All values within signed 4-bit range (-8 to 7)"""
     dut._log.info("Test 2: General matrix multiply")
-    dut._log.info("A=[[1,2],[3,4]] x W=[[5,6],[7,8]] = [[19,22],[43,50]]")
+    dut._log.info("A=[[1,2],[3,4]] x W=[[1,2],[3,4]] = [[7,10],[15,22]]")
     clock = Clock(dut.clk, 10, unit="us")
     cocotb.start_soon(clock.start())
     await reset_dut(dut)
 
-    # W=[[5,6],[7,8]]
-    # col0=[5,7] → w00=5, w10=7
-    # col1=[6,8] → w01=6, w11=8
+    # W=[[1,2],[3,4]]
+    # col0=[1,3] → w00=1, w10=3
+    # col1=[2,4] → w01=2, w11=4
     results = await load_and_compute(dut,
         a00=1, a01=2, a10=3, a11=4,
-        w00=5, w01=6, w10=7, w11=8
+        w00=1, w01=2, w10=3, w11=4
     )
 
-    assert results[0] == 19, f"C[0][0]: expected 19, got {results[0]}"
-    assert results[1] == 22, f"C[0][1]: expected 22, got {results[1]}"
-    assert results[2] == 43, f"C[1][0]: expected 43, got {results[2]}"
-    assert results[3] == 50, f"C[1][1]: expected 50, got {results[3]}"
+    # C[0][0] = 1×1 + 2×3 = 7
+    # C[0][1] = 1×2 + 2×4 = 10
+    # C[1][0] = 3×1 + 4×3 = 15
+    # C[1][1] = 3×2 + 4×4 = 22
+    assert results[0] ==  7, f"C[0][0]: expected  7, got {results[0]}"
+    assert results[1] == 10, f"C[0][1]: expected 10, got {results[1]}"
+    assert results[2] == 15, f"C[1][0]: expected 15, got {results[2]}"
+    assert results[3] == 22, f"C[1][1]: expected 22, got {results[3]}"
     dut._log.info("Test 2 PASS")
 
 
