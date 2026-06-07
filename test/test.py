@@ -54,10 +54,10 @@ async def load_and_compute(dut, a00, a01, a10, a11, w00, w01, w10, w11):
         if int(dut.uio_out.value) & 0x1:
             break
 
-    # read 4 signed outputs — sample immediately on each rising edge
+    # serializer output is registered — data_out updates one cycle after valid
+    # so clock once more, then read 4 consecutive values
     results = []
-    results.append(dut.uo_out.value.to_signed())  # first value already on output
-    for _ in range(3):
+    for _ in range(4):
         await RisingEdge(dut.clk)
         results.append(dut.uo_out.value.to_signed())
 
