@@ -6,7 +6,7 @@ SIM ?= icarus
 FST ?= -fst # Use more efficient FST format
 TOPLEVEL_LANG ?= verilog
 SRC_DIR = $(PWD)/../src
-PROJECT_SOURCES = PE_module.v array_module.v FSM_module.v output_serializer.v systolic_array.v tt_um_systolic_array.v
+PROJECT_SOURCES = PE_module.v array_module.v FSM_module.v output_serializer.v systolic_array.v tt_um_systolic_mac_2x2.v
 
 ifneq ($(GATES),yes)
 

@@ -7,14 +7,14 @@ project:
   language:     "Verilog"
   clock_hz:     50000000
   tiles: "1x1"
-  top_module:  "tt_um_systolic_array"
+  top_module:  "tt_um_systolic_mac_2x2"
   source_files:
       - "PE_module.v"
       - "array_module.v"
       - "FSM_module.v"
       - "output_serializer.v"
       - "systolic_array.v"
-      - "tt_um_systolic_array.v"
+      - "tt_um_systolic_mac_2x2.v"
 pinout:
   ui[0]: "start"
   ui[1]: "load"

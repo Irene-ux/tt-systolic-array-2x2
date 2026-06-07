@@ -9,7 +9,7 @@ The design has 5 modules:
 - **array_module** — 2×2 grid of 4 PEs with input skew registers. `a_row1` and `weight_col1` are delayed by 1 cycle to align data correctly across the array.
 - **FSM** — controls the computation sequence: IDLE → COMPUTE (2 cycles) → DRAIN (2 cycles) → READ (4 cycles) → IDLE. Generates `en`, `clear`, and `valid` signals automatically after `start` is pulsed.
 - **output_serializer** — serializes the 4 accumulator results (`acc_00`, `acc_01`, `acc_10`, `acc_11`) onto `data_out` one per cycle when `valid=1`.
-- **tt_um_systolic_array** — TT wrapper with streaming counter. Loads two sets of input registers (cycle 1 and cycle 2 values) via `ui_in` and `uio_in`, then auto-streams them to the array after `start`.
+- **tt_um_systolic_mac_2x2** — TT wrapper with streaming counter. Loads two sets of input registers (cycle 1 and cycle 2 values) via `ui_in` and `uio_in`, then auto-streams them to the array after `start`.
 
 ### Input loading protocol
 

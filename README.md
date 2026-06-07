@@ -19,7 +19,7 @@ Multiply-accumulate uses **shift-and-add** instead of the `*` operator — a del
 ## Architecture
 
 ```
-tt_um_systolic_array          TT wrapper
+tt_um_systolic_mac_2x2          TT wrapper
 ├── storage registers         8 registers, loaded in 4 cycles via ui_in / uio_in
 ├── stream_cnt sequencer      auto-feeds c1 → c2 → zeros after start
 └── systolic_array
@@ -125,7 +125,7 @@ src/
   fsm.v                 FSM controller
   output_serializer.v   Result serializer
   systolic_array.v      Top-level array
-  tt_um_systolic_array.v  TT wrapper
+  tt_um_systolic_mac_2x2.v  TT wrapper
 test/                   cocotb testbenches
 docs/                   Demo GIF and layout render
 ```
