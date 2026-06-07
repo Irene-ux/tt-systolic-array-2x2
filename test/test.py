@@ -50,13 +50,14 @@ async def load_and_compute(dut, a00, a01, a10, a11, w00, w01, w10, w11):
 
     # wait for valid
     for _ in range(50):
+        await RisingEdge(dut.clk)
         if int(dut.uio_out.value) & 0x1:
             break
-        await RisingEdge(dut.clk)
 
-    # read 4 signed outputs
+    # read 4 signed outputs — sample immediately on each rising edge
     results = []
-    for _ in range(4):
+    results.append(dut.uo_out.value.to_signed())  # first value already on output
+    for _ in range(3):
         await RisingEdge(dut.clk)
         results.append(dut.uo_out.value.to_signed())
 
