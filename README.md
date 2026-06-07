@@ -58,7 +58,8 @@ sel=11  ui_in[7:4]=w[0][1]  uio_in[7:4]=w[1][1]
 # 3. Read — wait for uio_out[0]=1, then read uo_out
 ```
 
-**Example:** A = [[1,2],[3,4]], W = [[5,6],[7,8]] → [[19,22],[43,50]]
+**Example:** A = [[1,2],[3,4]], W = [[1,2],[3,4]] → [[7,10],[15,22]]  
+*(Inputs within signed 4-bit range: −8 to +7)*
 
 ## Implementation
 
