@@ -147,3 +147,23 @@ async def test_negative(dut):
     assert results[2] ==  2, f"C[1][0]: expected  2, got {results[2]}"
     assert results[3] == -2, f"C[1][1]: expected -2, got {results[3]}"
     dut._log.info("Test 4 PASS")
+
+
+@cocotb.test()
+async def test_max_positive(dut):
+    """A=[[7,7],[7,7]] x W=[[7,7],[7,7]] = [[98,98],[98,98]]
+    Tests accumulator boundary: 7x7 + 7x7 = 49+49 = 98, fits in signed 8-bit (max 127)"""
+    dut._log.info("Test 5: Max positive values")
+    clock = Clock(dut.clk, 10, units="us")
+    cocotb.start_soon(clock.start())
+    await reset_dut(dut)
+
+    results = await load_and_compute(dut,
+        a00=7, a01=7, a10=7, a11=7,
+        w00=7, w01=7, w10=7, w11=7
+    )
+
+    # C[i][j] = 7x7 + 7x7 = 49 + 49 = 98 for all entries
+    for i, r in enumerate(results):
+        assert r == 98, f"C[{i}]: expected 98, got {r}"
+    dut._log.info("Test 5 PASS")
